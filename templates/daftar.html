@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mathfilters %}
+{% block contents%}
+
+	<div class="container">
+		<h3>Client List:</h3>
+	</div>
+	<div class="container text-center">
+	<a href="/crm/view?page={{data.number|sub:1}}" class="btn">&larr;</a>
+	{% for numbers in data.paginator.page_range %}
+		{% if numbers == data.number %}
+			<a class="btn" style="background: rgba(0, 0, 255, 0.5);" href="/crm/view?page={{numbers}}">{{numbers}}</a>
+		{% else %}
+			<a class="btn" style="background: rgba(0, 0, 255, 0.2);" href="/crm/view?page={{numbers}}">{{numbers}}</a>
+		{% endif %}
+	{% endfor%}
+	<a href="/crm/view?page={{data.number|addition:1}}" class="btn">&rarr;</a>
+	</div>
+	<div class="container p-2 shadow  border rounded" >
+		{% if data.paginator.count > 0 %}
+			<table style="font-size: 15px;" class="table table-bordered table-hover table-striped">
+				<thead class="table-dark">
+					<th scope="col" style="width: 5%;">No.</th>
+					<th scope="col" style="width: 30%;">Name</th>
+					<th scope="col" style="width: 20%;">Email</th>
+					<th scope="col" style="width: 15%;">Phone Number</th>
+					<th scope="col">Information</th>
+				</thead>
+				{% for datanya in data%}
+				<tr>
+					<th  scope="row">{{forloop.counter}}</td>
+					<td><a href="/crm/detail/{{datanya.id}}">{{datanya.first_name|title}} {{datanya.last_name|title}}</a></td>
+					<td>{{datanya.email}}</td>
+					<td>{{datanya.phone}}</td>
+					<td> 
+						by: <strong>{{datanya.created_by|title}}</strong><br/>
+						date: <strong>{{datanya.created_at|date:"d/m/Y"}}</strong><br/>
+						time: <strong>{{datanya.created_at|date:"h:m:s"}}</strong><br/>
+						{% if user.username == datanya.created_by or user.is_superuser %}
+							<input type="button" value="update" class="form-control btn btn-outline-success" style="font-size: 9px;">
+							<input type="button" value="delete" class="form-control btn btn-outline-danger" style="font-size: 9px;">
+						{% endif%}
+					</td>
+				</tr>
+				{% endfor%}
+			</table>
+		{% else %}
+			<h3>No Record data!</h3>
+		{% endif %}
+	</div>
+	
+	
+{% endblock%}

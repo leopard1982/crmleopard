@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mathfilters %}
+{% block contents%}
+
+	<div class="container">
+		<table class="table rounded shadow" style="background: rgba(0, 255, 0, 0.2);">
+			<tr>
+				<th>
+					<h3 class="p-2">Detail Client:</h3>					
+				</th>
+				<td>
+					<div class="text-end">
+						<a href="/crm/detail/{{data.id|sub:1}}" class="btn btn-outline-success">&larr;</a> <a class="btn btn-outline-warning" href="{% url 'view_record'%}">go to list</a> <a href="/crm/detail/{{data.id|addition:1}}" class="btn btn-outline-danger">&rarr;</a>	
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="container p-2 shadow  border rounded" >
+		<table class="table">
+			<tr>
+				<th style="width: 40%;">Client ID:</th>
+				<td scope="col">{{data.id}}</td>
+			</tr>
+			<tr>
+				<th>Client Name:</th>
+				<td>{{data.first_name|title}} {{data.last_name|title}}</td>
+			</tr>
+			<tr>
+				<th>Address:</th>
+				<td>{{data.address}}</td>
+			</tr>
+			<tr>
+				<th>City:</th>
+				<td>{{data.city}}</td>
+			</tr>
+			<tr>
+				<th>State:</th>
+				<td>{{data.address}}</td>
+			</tr>
+			<tr>
+				<th>Province:</th>
+				<td>{{data.province}}</td>
+			</tr>
+			<tr>
+				<th>Postal Code:</th>
+				<td>{{data.kode_pos}}</td>
+			</tr>
+			<tr>
+				<th>Email:</th>
+				<td>{{data.email}}</td>
+			</tr>
+			<tr>
+				<th>Phone Number:</th>
+				<td>{{data.phone}}</td>
+			</tr>
+			<tr>
+				<th>Created:</th>
+				<td>Date: {{data.created_at|date:"d/m/Y"}}<br/>
+					Time: {{data.created_at|date:"H:m:s"}}<br/>
+					By: {{data.created_by|title}}
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	<div class="container">
+		<a href="{% url 'testunit'%}?nama=hallooooooo ">klik me</a>
+	</div>
+
+{% endblock%}

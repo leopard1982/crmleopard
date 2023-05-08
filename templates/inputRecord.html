@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contents%}
+	
+	<div class="container col-6 p-5 border rounded" style="background: rgba(0, 255, 0, 0.2);">
+		<h1>Add Record</h1>
+			
+			<form method="POST" action="">
+				{% csrf_token %}
+				{{forms.as_p}}
+				<div class="d-flex justify-content-center py-3">
+					<button type="submit" class="btn btn-warning ">Add Record</button>
+				</div>
+			</form>
+	</div>
+{% endblock%}
