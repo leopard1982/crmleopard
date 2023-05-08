@@ -11,6 +11,7 @@ class InputRecord(forms.ModelForm):
 		self.fields['first_name'].widget.attrs['class']="form-control"
 		self.fields['first_name'].widget.attrs['required']="required"
 		self.fields['first_name'].widget.label="First Name"
+		
 
 		self.fields['last_name'].widget.attrs['class']="form-control"
 		self.fields['last_name'].widget.attrs['required']="required"
